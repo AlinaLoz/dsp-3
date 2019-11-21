@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лозюк</title>
+</head>
+<body>
+    <div>
+        <p>
+            <label for="inp-n">N:<span id="val-n"></span></label>
+            <input type="range" id="inp-n" min="128" max="500" value="128" class="slider">
+        </p>
+        <p>
+            <label for="inp-k">K:<span id="val-k"></span></label>
+            <input type="range" id="inp-k" min="0" max="500" value="0" class="slider">
+        </p>
+        <p>
+            <label for="inp-phi">phi:<span id="val-phi"></span></label>
+            <input type="range" id="inp-phi" min="0" max="360" value="0" class="slider">
+        </p>
+    </div>
+    <canvas id="chart" width="400" height="400" style="max-height: 400px; max-width: 400px;"></canvas>
+    <script src="./dist/bundle.js"></script>
+</body>
+</html>
