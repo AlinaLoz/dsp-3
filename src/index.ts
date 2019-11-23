@@ -1,32 +1,54 @@
-import { DSPBuilder } from "./DSPBuilder";
+import { Signal } from './signal';
+import { ChartBuilder } from './chartBuilder';
+import {Chart} from "chart.js";
 
-const ctx = document.getElementById('chart');
-const sliderN: HTMLInputElement = <HTMLInputElement>document.getElementById('inp-n');
-const sliderK: HTMLInputElement = <HTMLInputElement>document.getElementById('inp-k');
-const sliderPhi: HTMLInputElement = <HTMLInputElement>document.getElementById('inp-phi');
+let chartSignal: Chart = null;
+let chartRestoreSignal: Chart = null;
+let chartAmplitudeSpectrum: Chart = null;
+let chartPhaseSpectrum: Chart = null;
 
-const valN = document.getElementById('val-n');
-const valK = document.getElementById('val-k');
-const valPhi = document.getElementById('val-phi');
+const A = 1;
+const N = 256;
 
-sliderN.oninput = buildGraphics;
-sliderK.oninput = buildGraphics;
-sliderPhi.oninput = buildGraphics;
+const ctxSignal = document.getElementById('chart-signal');
+const ctxRestoreSignal = document.getElementById('chart-restore-signal');
+const ctxAmplitudeSpectrum = document.getElementById('chart-amplitude-spectrum');
+const ctxPhaseSpectrum = document.getElementById('chart-phase-spectrum');
+
+// const sliderN: HTMLInputElement = <HTMLInputElement>document.getElementById('freq-sampling-input');
+const sliderF: HTMLInputElement = <HTMLInputElement>document.getElementById('freq-signal-input');
+
+// const valN = document.getElementById('freq-sampling');
+const valFreq = document.getElementById('freq-signal');
+
+// sliderN.oninput = buildGraphics;
+sliderF.oninput = buildGraphics;
 
 buildGraphics();
 
+function clearAll() {
+    if (!chartSignal) return;
+    chartSignal.destroy();
+    chartRestoreSignal.destroy();
+    chartAmplitudeSpectrum.destroy();
+    chartPhaseSpectrum.destroy();
+}
+
 function buildGraphics() {
-    valN.innerHTML =  sliderN.value;
-    valK.innerHTML = sliderK.value;
-    valPhi.innerHTML = sliderPhi.value;
+    clearAll();
+    // valN.innerHTML =  sliderN.value;
+    valFreq.innerHTML = sliderF.value;
 
-    const N: number = parseInt(sliderN.value);
-    const K: number = parseInt(sliderK.value);
-    const phi: number = parseInt(sliderPhi.value);
+    // let N: number = parseInt(sliderN.value);
+    const freq: number = parseInt(sliderF.value);
+    const signal = new Signal(A, freq, N);
+    signal.initSignal();
+    const { srcSignal, rstrSignal, amplitudeSpectrum, phaseSpectrum } = signal;
 
-    const dsp = new DSPBuilder(N, K, phi);
-    dsp.generateParameters();
-    dsp.buildGraphics(ctx);
+    chartSignal = ChartBuilder.build(ctxSignal, srcSignal, 'signal', 'red');
+    chartRestoreSignal = ChartBuilder.build(ctxRestoreSignal, rstrSignal, 'rstrSignal', 'green');
+    chartAmplitudeSpectrum = ChartBuilder.build(ctxAmplitudeSpectrum, amplitudeSpectrum, 'amplitudeSpectrum', 'blue');
+    chartPhaseSpectrum = ChartBuilder.build(ctxPhaseSpectrum, phaseSpectrum, 'phaseSpectrum', 'yellow');
 }
 
 

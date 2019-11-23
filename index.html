@@ -7,19 +7,22 @@
 <body>
     <div>
         <p>
-            <label for="inp-n">N:<span id="val-n"></span></label>
-            <input type="range" id="inp-n" min="128" max="500" value="128" class="slider">
+            <label for="freq-signal-input">Freq:<span id="freq-signal"></span></label>
+            <input type="range" id="freq-signal-input" min="1" max="256" value="1" step="1" class="slider">
         </p>
-        <p>
-            <label for="inp-k">K:<span id="val-k"></span></label>
-            <input type="range" id="inp-k" min="0" max="500" value="0" class="slider">
-        </p>
-        <p>
-            <label for="inp-phi">phi:<span id="val-phi"></span></label>
-            <input type="range" id="inp-phi" min="0" max="360" value="0" class="slider">
-        </p>
+<!--        <p>-->
+<!--            <label for="freq-sampling-input">N:<span id="freq-sampling"></span></label>-->
+<!--            <input type="range" id="freq-sampling-input" min="256" max="2048" value="256" class="slider">-->
+<!--        </p>-->
     </div>
-    <canvas id="chart" width="400" height="400" style="max-height: 400px; max-width: 400px;"></canvas>
+    <div style="display: flex">
+        <canvas id="chart-signal" width="400" height="400" style="max-height: 400px; max-width: 400px;"></canvas>
+        <canvas id="chart-restore-signal" width="400" height="400" style="max-height: 400px; max-width: 400px;"></canvas>
+    </div>
+    <div style="display: flex">
+        <canvas id="chart-amplitude-spectrum" width="300" height="300" style="max-height: 400px; max-width: 400px;"></canvas>
+        <canvas id="chart-phase-spectrum" width="300" height="300" style="max-height: 400px; max-width: 400px;"></canvas>
+    </div>
     <script src="./dist/bundle.js"></script>
 </body>
 </html>
