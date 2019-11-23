@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лозюк. Полигармонический сигнал.</title>
+</head>
+<body>
+    <div>
+        <p>
+            <label for="poli-freq-signal-input">Freq:<span id="poli-freq-signal"></span></label>
+            <input type="range" id="poli-freq-signal-input" min="1" max="256" value="1" step="1" class="slider">
+        </p>
+    </div>
+    <div style="display: flex">
+        <canvas id="poli-chart-signal" width="400" height="400" style="max-height: 400px; max-width: 400px;"></canvas>
+        <canvas id="poli-chart-restore-signal" width="400" height="400" style="max-height: 400px; max-width: 400px;"></canvas>
+    </div>
+    <div style="display: flex">
+        <canvas id="poli-chart-amplitude-spectrum" width="300" height="300" style="max-height: 400px; max-width: 400px;"></canvas>
+        <canvas id="poli-chart-phase-spectrum" width="300" height="300" style="max-height: 400px; max-width: 400px;"></canvas>
+    </div>
+    <script src="./dist/poli.harmonic.bundle.js"></script>
+</body>
+</html>

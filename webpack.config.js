@@ -1,7 +1,15 @@
 const path = require('path');
+const entryPlus = require('webpack-entry-plus');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: entryPlus([
+    {
+      entryFiles: './src/index.harmonic.ts',
+      outputName:'harmonic.bundle'
+    }, {
+      entryFiles: './src/index.poli.harmonic.ts',
+      outputName: 'poli.harmonic.bundle'
+  }]),
   module: {
     rules: [
       {
@@ -15,7 +23,10 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
+  optimization: {
+    minimize: false,
+  }
 };

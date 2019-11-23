@@ -1,6 +1,7 @@
-import { Signal } from './signal';
-import { ChartBuilder } from './chartBuilder';
-import {Chart} from "chart.js";
+import {Chart} from 'chart.js';
+
+import { HarmonicSignal } from './siganls/harmonic.signal';
+import { ChartBuilder } from './helpers/chart.builder';
 
 let chartSignal: Chart = null;
 let chartRestoreSignal: Chart = null;
@@ -41,7 +42,7 @@ function buildGraphics() {
 
     // let N: number = parseInt(sliderN.value);
     const freq: number = parseInt(sliderF.value);
-    const signal = new Signal(A, freq, N);
+    const signal = new HarmonicSignal(A, freq, N);
     signal.initSignal();
     const { srcSignal, rstrSignal, amplitudeSpectrum, phaseSpectrum } = signal;
 
