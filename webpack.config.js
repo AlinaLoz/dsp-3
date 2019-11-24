@@ -9,7 +9,11 @@ module.exports = {
     }, {
       entryFiles: './src/index.poli.harmonic.ts',
       outputName: 'poli.harmonic.bundle'
-  }]),
+  },  {
+      entryFiles: './src/index.filters.ts',
+      outputName: 'filters.bundle'
+    }
+  ]),
   module: {
     rules: [
       {

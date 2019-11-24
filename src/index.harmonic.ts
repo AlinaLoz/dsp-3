@@ -37,12 +37,8 @@ function clearAll() {
 
 function buildGraphics() {
     clearAll();
-    // valN.innerHTML =  sliderN.value;
     valFreq.innerHTML = sliderF.value;
-
-    // let N: number = parseInt(sliderN.value);
-    const freq: number = parseInt(sliderF.value);
-    const signal = new HarmonicSignal(A, freq, N);
+    const signal = new HarmonicSignal(A, parseInt(sliderF.value), N);
     signal.initSignal();
     const { srcSignal, rstrSignal, amplitudeSpectrum, phaseSpectrum } = signal;
 

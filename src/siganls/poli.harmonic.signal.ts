@@ -23,7 +23,7 @@ export class PoliHarmonicSignal extends Signal {
         this.cosComponents = this.getCosComponents();
         this.amplitudeSpectrum = this.getAmplitudeSpectrum();
         this.phaseSpectrum = this.getPhaseSpectrum();
-        this.rstrSignal = this.restoreSignal();
+        this.rstrSignal = this.restoreSignalWithPhase(0, this.countHarmonic);
     }
 
     generateSignal() {
@@ -48,13 +48,28 @@ export class PoliHarmonicSignal extends Signal {
         return sign;
     }
 
+    // number harmonic === access frequency
+    restoreSignalWithPhase(minFreq: number, maxFreq: number) {
+        let values: number[] = [];
 
-    restoreSignal() {
+        console.log(minFreq, maxFreq);
+
+        for (let i = 0; i < this.N; i++) {
+            let tmp = 0;
+            for (let j = minFreq; j < maxFreq; j++) {
+                tmp += this.amplitudeSpectrum[j] * Math.cos(2 * Math.PI * i * j / this.N - this.phaseSpectrum[j]);
+            }
+            values.push(tmp + this.amplitudeSpectrum[0] / 2);
+        }
+        return values;
+    }
+
+    restoreSignalWithoutPhase(countHarmonic: number, withPhase = true) {
         let values: number[] = [];
         for (let i = 0; i < this.N; i++) {
             let tmp = 0;
-            for (let j = 0; j < this.countHarmonic; j++) {
-                tmp += this.amplitudeSpectrum[j] * Math.cos(2 * Math.PI * i * j / this.N - this.phaseSpectrum[j]);
+            for (let j = 0; j < countHarmonic; j++) {
+                tmp += this.amplitudeSpectrum[j] * Math.cos(2 * Math.PI * i * j / this.N);
             }
             values.push(tmp + this.amplitudeSpectrum[0] / 2);
         }

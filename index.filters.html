@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лозюк. Фильтры сигналов.</title>
+</head>
+<body>
+    <div style="position: fixed; right: 100px">
+        <p>
+            <label for="filters-freq-input">Freq:<span id="filters-freq"></span></label>
+            <input type="range" id="filters-freq-input" min="1" max="256" value="1" step="1" class="slider">
+        </p>
+        <p>
+            <label for="filters-freq-lf-input">FreqLF:<span id="filters-freq-lf"></span></label>
+            <input type="range" id="filters-freq-lf-input" min="1" max="256" value="1" step="1" class="slider">
+        </p>
+        <p>
+            <label for="filters-freq-hf-input">FreqHF:<span id="filters-freq-hf"></span></label>
+            <input type="range" id="filters-freq-hf-input" min="1" max="256" value="10" step="1" class="slider">
+        </p>
+    </div>
+    <div style="display: flex">
+        <canvas id="filters-chart-signal" width="400" height="400" style="max-height: 400px; max-width: 400px;"></canvas>
+        <canvas id="filters-chart-lf" width="300" height="300" style="max-height: 400px; max-width: 400px;"></canvas>
+    </div>
+    <div style="display: flex">
+        <canvas id="filters-chart-hf" width="300" height="300" style="max-height: 400px; max-width: 400px;"></canvas>
+        <canvas id="filters-chart-lhf" width="300" height="300" style="max-height: 400px; max-width: 400px;"></canvas>
+    </div>
+    <script src="./dist/filters.bundle.js"></script>
+</body>
+</html>
