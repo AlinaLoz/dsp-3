@@ -52,7 +52,7 @@ export class Signal {
     protected getPhaseSpectrum() {
         let phaseSpectrum: number[] = [];
         for (let j = 0; j < this.countHarmonic; j++) {
-            phaseSpectrum.push(Math.atan(this.sinComponents[j] / this.cosComponents[j]));
+            phaseSpectrum.push(Math.atan2(this.sinComponents[j], this.cosComponents[j]));
         }
         return phaseSpectrum;
     }

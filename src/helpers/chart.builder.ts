@@ -12,6 +12,7 @@ export class ChartBuilder {
                     data,
                     label,
                     borderColor,
+                    borderWidth: 1,
                 }]
             },
         });

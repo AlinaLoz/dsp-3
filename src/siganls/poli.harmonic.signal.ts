@@ -40,8 +40,8 @@ export class PoliHarmonicSignal extends Signal {
 
         for (let i = 0; i < this.N; i++) {
             let  tmp = 0;
-            for (let j = 0; j < COUNT_HARMONIC; j++){
-                tmp += amplitude[j] * Math.cos(2 * Math.PI * j * i / this.N - phase[j]);
+            for (let j = 1; j <= COUNT_HARMONIC; j++){
+                tmp += amplitude[j - 1] * Math.cos(2 * Math.PI * j * i / this.N - phase[j-1]);
             }
             sign[i] = tmp;
         }
@@ -51,8 +51,6 @@ export class PoliHarmonicSignal extends Signal {
     // number harmonic === access frequency
     restoreSignalWithPhase(minFreq: number, maxFreq: number) {
         let values: number[] = [];
-
-        console.log(minFreq, maxFreq);
 
         for (let i = 0; i < this.N; i++) {
             let tmp = 0;

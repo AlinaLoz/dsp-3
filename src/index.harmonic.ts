@@ -42,8 +42,29 @@ function buildGraphics() {
     signal.initSignal();
     const { srcSignal, rstrSignal, amplitudeSpectrum, phaseSpectrum } = signal;
 
-    chartSignal = ChartBuilder.build(ctxSignal, srcSignal, 'signal', 'red');
-    chartRestoreSignal = ChartBuilder.build(ctxRestoreSignal, rstrSignal, 'rstrSignal', 'green');
+    // @ts-ignore
+
+    new Chart(ctxSignal, {
+        type: 'line',
+        data: {
+            labels: Array.from(Array(srcSignal.length).keys()).map(item => item.toString()),
+            datasets: [{
+                data: srcSignal,
+                label: 'signal',
+                borderColor: 'red',
+                borderWidth: 1,
+            }, {
+                data: rstrSignal,
+                label: 'rstrSignal',
+                borderColor: 'green',
+                borderWidth: 1,
+            }]
+        },
+    });
+
+    /*chartSignal = ChartBuilder.build(ctxSignal, srcSignal, 'signal', 'red');
+    chartRestoreSignal = ChartBuilder.build(ctxRestoreSignal, rstrSignal, 'rstrSignal', 'green');*/
+
     chartAmplitudeSpectrum = ChartBuilder.build(ctxAmplitudeSpectrum, amplitudeSpectrum, 'amplitudeSpectrum', 'blue');
     chartPhaseSpectrum = ChartBuilder.build(ctxPhaseSpectrum, phaseSpectrum, 'phaseSpectrum', 'yellow');
 }
